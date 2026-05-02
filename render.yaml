@@ -1,0 +1,15 @@
+services:
+  - type: worker
+    name: claude-code-agent
+    runtime: node
+    buildCommand: npm install -g @anthropic-ai/claude-code
+    startCommand: claude --no-interactive --print "your task here"
+    envVars:
+      - key: ANTHROPIC_BASE_URL
+        value: https://openrouter.ai/api
+      - key: ANTHROPIC_AUTH_TOKEN
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        value: ""
+      - key: ANTHROPIC_MODEL
+        value: tencent/hy3-preview:free
