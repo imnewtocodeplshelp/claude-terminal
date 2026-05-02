@@ -1,9 +1,7 @@
 FROM node:22-slim
 
 RUN apt-get update && apt-get install -y \
-    curl \
-    git \
-    wget \
+    curl git wget \
     && wget https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.x86_64 -O /usr/local/bin/ttyd \
     && chmod +x /usr/local/bin/ttyd \
     && npm install -g @anthropic-ai/claude-code \
@@ -11,4 +9,6 @@ RUN apt-get update && apt-get install -y \
 
 EXPOSE 8080
 
-CMD ["ttyd", "--port", "8080", "--writable", "/bin/bash"]
+CMD ["ttyd", "--port", "8080", "--writable", \
+     "bash", "-c", \
+     "claude --model tencent/hy3-preview:free"]
