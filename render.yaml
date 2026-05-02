@@ -1,9 +1,9 @@
 services:
-  - type: worker
-    name: claude-code-agent
+  - type: web
+    name: claude-terminal
     runtime: node
     buildCommand: npm install -g @anthropic-ai/claude-code
-    startCommand: claude --no-interactive --print "your task here"
+    startCommand: npx ttyd -p 10000 -W claude
     envVars:
       - key: ANTHROPIC_BASE_URL
         value: https://openrouter.ai/api
